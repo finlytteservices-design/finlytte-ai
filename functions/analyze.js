@@ -1,38 +1,30 @@
- export async function onRequestPost(context) {
-  try {
-    const { request, env } = context;
+ export default {
+  async fetch(request) {
+    try {
+      const url = new URL(request.url);
+      const symbol = url.searchParams.get("symbol") || "";
 
-    const body = await request.json();
-    const symbol = body.symbol;
+      if (!symbol) {
+        return new Response(
+          JSON.stringify({ error: "No symbol provided" }),
+          { headers: { "Content-Type": "application/json" } }
+        );
+      }
 
-    if (!symbol) {
-      return new Response(JSON.stringify({ error: "No symbol provided" }), {
-        status: 400,
-        headers: { "Content-Type": "application/json" }
+      // Example dummy response (replace with actual logic)
+      const result = {
+        symbol,
+        analysis: "This is a functional Cloudflare test response."
+      };
+
+      return new Response(JSON.stringify(result), {
+        headers: { "Content-Type": "application/json" },
       });
+    } catch (err) {
+      return new Response(
+        JSON.stringify({ error: err.message }),
+        { headers: { "Content-Type": "application/json" } }
+      );
     }
-
-    // Call Finnhub
-    const url = `https://finnhub.io/api/v1/quote?symbol=${symbol}&token=${env.FINNHUB_API_KEY}`;
-    const response = await fetch(url);
-
-    if (!response.ok) {
-      return new Response(JSON.stringify({ error: "Finnhub API failed" }), {
-        status: 500,
-        headers: { "Content-Type": "application/json" }
-      });
-    }
-
-    const data = await response.json();
-
-    return new Response(JSON.stringify({ success: true, data }), {
-      headers: { "Content-Type": "application/json" }
-    });
-
-  } catch (err) {
-    return new Response(JSON.stringify({ error: err.message }), {
-      status: 500,
-      headers: { "Content-Type": "application/json" }
-    });
   }
-}
+};
