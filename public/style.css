@@ -1,96 +1,62 @@
- /* public/assets/style.css - premium responsive */
-:root{
-  --bg:#0f1720;
-  --card:#0b1220;
-  --muted:#9aa4b2;
-  --accent:#00bfa6;
-  --glass: rgba(255,255,255,0.03);
-  --text:#f8fafc;
-  --shadow: 0 10px 30px rgba(2,6,23,0.6);
-  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-}
-*{box-sizing:border-box}
-html,body{height:100%;}
-body{
-  margin:0;
-  background: linear-gradient(180deg,#07101a 0%, #0f1720 100%);
-  color:var(--text);
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  font-size:16px;
-  line-height:1.45;
+ body {
+    margin: 0;
+    padding: 0;
+    font-family: Inter, sans-serif;
+    background: #0b0f14;
+    color: white;
 }
 
-/* Topbar */
-.topbar{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:18px 24px;
-  border-bottom: 1px solid rgba(255,255,255,0.03);
-}
-.brand{font-weight:700; font-size:20px; color:var(--text); letter-spacing:0.6px}
-.navlinks a{
-  color:var(--muted);
-  margin-left:18px;
-  text-decoration:none;
-  font-size:14px;
-}
-.navlinks a:hover{color:var(--text)}
-
-/* Layout */
-.container{
-  max-width:980px;
-  margin:32px auto;
-  padding:0 18px;
+header {
+    padding: 30px;
+    text-align: center;
 }
 
-/* Card */
-.report-card{
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  border-radius:14px;
-  padding:28px;
-  box-shadow:var(--shadow);
-  border: 1px solid rgba(255,255,255,0.03);
-}
-#title{margin:0 0 8px 0; font-size:34px; letter-spacing:0.3px}
-.muted{color:var(--muted); margin-bottom:12px}
-
-/* Body sections */
-.report-body{margin-top:16px}
-.section{
-  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
-  border-radius:10px;
-  padding:16px;
-  margin-bottom:12px;
-  border:1px solid rgba(255,255,255,0.02);
-}
-.section h3{margin:0 0 8px 0; font-size:18px}
-.section p{margin:0; color:var(--muted)}
-
-/* key-value grid */
-.kv{display:grid; grid-template-columns: 1fr 1fr; gap:10px}
-.kv .pair{padding:10px; background:var(--glass); border-radius:8px}
-.kv .pair strong{display:block; margin-bottom:6px}
-
-/* risk gauge */
-.risk-wrap{display:flex; align-items:center; gap:12px}
-.risk-bar{
-  height:12px; background: rgba(255,255,255,0.06); border-radius:999px; flex:1; overflow:hidden;
-  position:relative;
-}
-.risk-fill{
-  height:100%; width:0%; border-radius:999px; transition:width 800ms ease;
-  background: linear-gradient(90deg,#00e6a8,#58d0ff);
+h1 {
+    font-size: 42px;
+    font-weight: 700;
 }
 
-/* small responsive */
-@media (max-width:640px){
-  #title{font-size:24px}
-  .kv{grid-template-columns:1fr}
-  .container{margin:18px auto}
+.container {
+    margin: 40px auto;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
 }
 
-/* footer */
-.footer{padding:28px; text-align:center; color:var(--muted); font-size:14px}
+input, select, button {
+    padding: 14px 18px;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+}
+
+input, select {
+    background: #121820;
+    color: white;
+    width: 220px;
+}
+
+button {
+    background: white;
+    color: black;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.analysis-box {
+    max-width: 900px;
+    margin: 40px auto;
+    background: #121820;
+    padding: 30px;
+    border-radius: 12px;
+    font-size: 20px;
+    line-height: 1.7;
+}
+
+.back {
+    color: white;
+    font-size: 18px;
+    position: absolute;
+    left: 30px;
+}
 
