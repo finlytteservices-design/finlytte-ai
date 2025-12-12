@@ -5,7 +5,36 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Analysis — Finlytte</title>
 <link rel="stylesheet" href="assets/style.css">
+
+<style>
+  .section-title {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  .analysis-block {
+    background: #fff;
+    padding: 18px 22px;
+    border-radius: 14px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    margin-top: 20px;
+  }
+  .risk-bar {
+    width: 100%;
+    height: 14px;
+    background: #eee;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 12px;
+  }
+  .risk-fill {
+    height: 100%;
+    transition: width 1.2s ease;
+    background: linear-gradient(90deg,#2ecc71,#f1c40f,#e74c3c);
+  }
+</style>
 </head>
+
 <body>
 <header class="nav">
   <div class="brand">Finlytte</div>
@@ -20,17 +49,45 @@
 <main class="page">
   <div class="card max">
     <h2 id="title">Analysis</h2>
-    <div id="loading" class="muted">Loading analysis…</div>
-    <div id="fullResult" style="margin-top:16px;"></div>
+    <div id="loading" class="muted">Fetching analysis…</div>
+
+    <div id="content" style="display:none; margin-top:20px;">
+
+      <!-- Overview -->
+      <div class="analysis-block">
+        <div class="section-title">Overview</div>
+        <div id="overview"></div>
+      </div>
+
+      <!-- Growth -->
+      <div class="analysis-block">
+        <div class="section-title">Growth, Profitability & Future Scope</div>
+        <div id="growth"></div>
+      </div>
+
+      <!-- Ratios -->
+      <div class="analysis-block">
+        <div class="section-title">Fundamental Ratio Analysis</div>
+        <div id="ratios"></div>
+      </div>
+
+      <!-- Risk Meter -->
+      <div class="analysis-block">
+        <div class="section-title">Risk Meter</div>
+        <div class="risk-bar">
+          <div id="riskFill" class="risk-fill" style="width:0%"></div>
+        </div>
+        <div id="riskText" style="margin-top:10px; font-weight:600;"></div>
+      </div>
+
+    </div>
   </div>
 </main>
 
 <footer class="footer">
-  <div>© <span id="yearA"></span> Finlytte</div>
+  <div>© 2025 Finlytte Services</div>
 </footer>
 
-<!-- FIXED THIS LINE -->
-<script src="assets/analysis-script.js"></script>
-
+<script src="assets/analysis.js"></script>
 </body>
 </html>
