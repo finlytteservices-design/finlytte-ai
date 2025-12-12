@@ -1,20 +1,38 @@
-<!DOCTYPE html>
+ 
+<!-- public/analysis.html -->
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Finlytte Analysis Report</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Analysis — Finlytte</title>
+  <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
+  <header class="topbar">
+    <div class="brand">Finlytte</div>
+    <nav class="navlinks">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="ratios.html">Ratios</a>
+      <a href="disclaimer.html">Disclaimer</a>
+    </nav>
+  </header>
 
-<div class="analysis-container">
-    <h1 id="reportTitle">Stock Report</h1>
-    <div id="loading">Analyzing… please wait (5–7 sec)…</div>
-    <div id="analysisOutput" style="display:none;"></div>
-</div>
+  <main class="container">
+    <section class="report-card">
+      <h1 id="title">Analysis</h1>
+      <div id="meta" class="muted"></div>
+      <div id="loading" class="muted">Fetching analysis...</div>
 
-<script src="analysis-script.js"></script>
+      <div id="fullResult" class="report-body"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div>© <span id="yearA"></span> Finlytte — Not investment advice.</div>
+  </footer>
+
+  <script src="assets/analysis-script.js"></script>
 </body>
 </html>
-
