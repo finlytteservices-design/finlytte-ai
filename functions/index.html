@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Finlytte — AI Stock Analyzer</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    body { font-family: system-ui, Arial; max-width:900px; margin:36px auto; padding:0 16px; line-height:1.5; }
+    header{display:flex;align-items:center;gap:12px}
+    input{padding:10px;border:1px solid #ddd;border-radius:6px;font-size:16px}
+    button{padding:10px 14px;border-radius:6px;border:none;cursor:pointer}
+    pre{background:#111;color:#eee;padding:16px;border-radius:8px;white-space:pre-wrap;word-break:break-word}
+    .small{font-size:13px;color:#666}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Finlytte</h1>
+    <div class="small">AI stock analysis</div>
+  </header>
+
+  <p>Enter a ticker (e.g. <code>AAPL</code>, <code>RELIANCE.NS</code>) and click <strong>Analyze</strong>.</p>
+
+  <div style="display:flex;gap:8px;align-items:center;margin-bottom:12px;">
+    <input id="ticker" placeholder="AAPL" />
+    <button id="go">Analyze</button>
+    <button id="example">Example</button>
+  </div>
+
+  <div class="small">Response:</div>
+  <pre id="out">No analysis yet.</pre>
+
+  <script>
+    const out = document.getElementById('out');
+    document.getElementById('example').addEventListener('click', ()=> {
+      document.getElementById('ticker').value = 'AAPL';
+    });
+
+    document.getElementById('go').addEventListener('click', async () => {
+      const ticker = (document.getElementById('ticker').value || '').trim().toUpperCase();
+      if(!ticker) return alert('Enter a ticker');
+      out.textContent = 'Analyzing ' + ticker + ' ...';
+      try {
+        const res = await fetch(`/api/analyze?ticker=${encodeURIComponent(ticker)}`);
+        const j = await res.json();
+        if (j.error) out.textContent = 'Error: ' + j.error;
+        else out.textContent = j.analysis || JSON.stringify(j, null, 2);
+      } catch (e) {
+        out.textContent = 'Request failed: ' + e.message;
+      }
+    });
+  </script>
+
+  <footer style="margin-top:28px;font-size:13px;color:#666">
+    Finlytte™ • © 2025 Finlytte Services
+  </footer>
+</body>
+</html>
