@@ -1,13 +1,17 @@
-function startAnalysis() {
-    const symbol = document.getElementById("stockInput").value.trim();
-    const exchange = document.getElementById("exchangeInput").value;
+ 
+function analyzeStock() {
+    const stock = document.getElementById("stockInput").value.trim();
+    const exchange = document.getElementById("exchange").value;
 
-    if (!symbol) {
-        alert("Enter a stock symbol");
+    if (!stock) {
+        alert("Enter a stock name.");
         return;
     }
 
-    // Redirect to analysis page with URL parameters
-    window.location.href = `analysis.html?symbol=${encodeURIComponent(symbol)}&exchange=${exchange}`;
-}
+    const query = new URLSearchParams({
+        stock: stock,
+        exchange: exchange
+    });
 
+    window.location.href = "/analysis.html?" + query.toString();
+}
