@@ -1,20 +1,52 @@
- <!DOCTYPE html>
+ <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Finlytte — Analysis</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Analysis — Finlytte</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <a class="back" href="index.html">← Back</a>
+  <header class="page-header">
+    <h1 id="title">Analysis</h1>
+    <div id="meta" class="muted"></div>
+  </header>
 
-<header>
-    <a href="/" class="back">← Back</a>
-    <h1 id="title"></h1>
-</header>
+  <main class="container">
+    <section id="overview" class="card">
+      <h2>Overview</h2>
+      <div id="overviewContent">Loading overview…</div>
+    </section>
 
-<div class="analysis-box">
-    <pre id="result">Fetching analysis...</pre>
-</div>
+    <section id="growth" class="card">
+      <h2>Growth & Future Scope</h2>
+      <div id="growthContent">Loading growth…</div>
+    </section>
+
+    <section id="ratios" class="card">
+      <h2>Ratio Analysis</h2>
+      <div id="ratiosContent">Loading ratios…</div>
+    </section>
+
+    <section id="roi" class="card">
+      <h2>ROI Analysis</h2>
+      <div id="roiContent">Loading ROI…</div>
+    </section>
+
+    <section id="industry" class="card">
+      <h2>Industry Comparison</h2>
+      <div id="industryContent">Loading comparisons…</div>
+    </section>
+
+    <section id="risk" class="card speedometer-card">
+      <h2>Risk Meter</h2>
+      <canvas id="gauge" width="360" height="160" aria-hidden="true"></canvas>
+      <div id="riskLabel" class="muted">Loading risk…</div>
+    </section>
+
+    <div id="footerNote" class="muted tiny">© 2025 Finlytte — Not investment advice.</div>
+  </main>
 
 <script src="analysis-script.js"></script>
 </body>
