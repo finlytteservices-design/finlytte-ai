@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>About — Finlytte</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="nav">
+  <div class="brand">Finlytte</div>
+  <nav class="links">
+    <a href="index.html">Home</a>
+    <a href="about.html" class="active">About</a>
+    <a href="ratios.html">Ratios</a>
+    <a href="disclaimer.html">Disclaimer</a>
+  </nav>
+</header>
+
+<main class="page">
+  <div class="card max">
+    <h2>How Finlytte uses AI</h2>
+    <p>Finlytte combines modern AI with financial data to deliver clear stock analysis. For each stock we:</p>
+    <ul>
+      <li>Gather financial statements and normalize key metrics</li>
+      <li>Compute important ratios and trends</li>
+      <li>Use AI to interpret results, produce a risk meter, and compare peers</li>
+      <li>Return a concise, plain-language summary for investors</li>
+    </ul>
+    <p class="muted">This tool is for educational use only and is not investment advice.</p>
+  </div>
+</main>
+
+<footer class="footer">
+  <div>© <span id="year2"></span> Finlytte</div>
+</footer>
+
+<script>document.getElementById('year2').textContent=new Date().getFullYear();</script>
+</body>
+</html>

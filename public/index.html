@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Finlytte — AI Stock Analyser</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="nav">
+  <div class="brand">Finlytte</div>
+  <nav class="links">
+    <a href="index.html" class="active">Home</a>
+    <a href="about.html">About</a>
+    <a href="ratios.html">Ratios</a>
+    <a href="disclaimer.html">Disclaimer</a>
+  </nav>
+</header>
+
+<main class="hero center-hero">
+  <div class="hero-card">
+    <h1>Finlytte: <span class="accent">AI Stock Analyser</span></h1>
+    <p class="lead">Enter an NSE or BSE stock symbol (e.g., <em>RELIANCE</em>, <em>TATASTEEL</em>) to get an advanced AI-driven fundamental analysis: Risk meter, ratio analysis, profitability, industry comparison, YoY growth and historical overview.</p>
+
+    <div class="card input-card">
+      <label for="stock" class="muted">Stock symbol (NSE / BSE)</label>
+      <input id="stock" placeholder="e.g., RELIANCE" />
+      <div class="row">
+        <button id="analyzeBtn" class="primary">Analyze</button>
+        <button id="clearBtn" class="ghost">Clear</button>
+      </div>
+      <div class="muted small">Results open on a separate page. Your OpenAI key is stored securely on the server.</div>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div>© <span id="year"></span> Finlytte — Not investment advice.</div>
+</footer>
+
+<script src="assets/script.js"></script>
+</body>
+</html>
