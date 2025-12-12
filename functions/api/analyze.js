@@ -1,9 +1,7 @@
-// functions/analyze.js
-
-export async function onRequest(context) {
+ export async function onRequest(context) {
   try {
     const url = new URL(context.request.url);
-    const symbol = url.searchParams.get("symbol") || "";
+    const symbol = url.searchParams.get("symbol");
 
     if (!symbol) {
       return new Response(JSON.stringify({ error: "No symbol provided" }), {
@@ -12,14 +10,12 @@ export async function onRequest(context) {
       });
     }
 
-    // Dummy response (replace later with real OpenAI logic)
-    const result = {
+    // Dummy response
+    return new Response(JSON.stringify({
       ok: true,
-      symbol,
-      analysis: "This is a Cloudflare Pages Function test response."
-    };
-
-    return new Response(JSON.stringify(result), {
+      ticker: symbol,
+      analysis: "Cloudflare Pages Function working perfectly!"
+    }), {
       status: 200,
       headers: { "Content-Type": "application/json" }
     });
