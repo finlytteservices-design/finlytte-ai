@@ -1,33 +1,21 @@
- function goToAnalysis() {
-    const stock = document.getElementById("stockInput").value.trim();
-    if (!stock) return alert("Enter a stock name");
+ window.onload = async function () {
+    const url = new URL(window.location.href);
+    const stock = url.searchParams.get("stock");
 
-    window.location.href = `analysis.html?stock=${encodeURIComponent(stock)}`;
-}
+    document.getElementById("stockTitle").innerText = `Analysis for ${stock}`;
 
-async function loadAnalysis() {
-    const params = new URLSearchParams(window.location.search);
-    const stock = params.get("stock");
+    const res = await fetch(`/functions/analyze?stock=${encodeURIComponent(stock)}`);
+    const data = await res.json();
 
-    document.getElementById("analysisTitle").textContent = `Analysis: ${stock}`;
+    document.getElementById("overview").innerHTML = `<h2>Overview</h2>${data.overview}`;
+    document.getElementById("growth").innerHTML = `<h2>Growth & Profitability</h2>${data.growth}`;
+    document.getElementById("ratios").innerHTML = `<h2>Ratio Analysis</h2>${data.ratios}`;
+    document.getElementById("roi").innerHTML = `<h2>ROI Analysis</h2>${data.roi}`;
+    document.getElementById("industry").innerHTML = `<h2>Industry Comparison</h2>${data.industry}`;
 
-    try {
-        const res = await fetch(`/analysis/${stock}`);
-        const data = await res.json();
-
-        document.querySelector("#overview p").textContent = data.overview;
-        document.querySelector("#growth p").textContent = data.growth;
-        document.querySelector("#ratios p").textContent = data.ratios;
-        document.querySelector("#roi p").textContent = data.roi;
-        document.querySelector("#industry p").textContent = data.industry;
-
-    } catch (err) {
-        document.getElementById("error").textContent = 
-            "Error: Could not fetch analysis.";
-    }
-}
-
-if (window.location.pathname.includes("analysis.html")) {
-    loadAnalysis();
-}
+    // Animate risk needle (-90° low → 0° medium → +90° high)
+    const risk = Number(data.risk);
+    const degree = (risk - 50) * 1.8; 
+    document.getElementById("needle").style.transform = `rotate(${degree}deg)`;
+};
 
