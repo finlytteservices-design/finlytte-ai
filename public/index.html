@@ -3,35 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Finlytte — AI Stock Research</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Finlytte | AI Stock Intelligence</title>
+    <link rel="stylesheet" href="public/style.css">
 </head>
-
 <body>
 
-<header class="nav">
+<nav class="nav">
     <div class="logo">Finlytte</div>
-</header>
+</nav>
 
 <section class="hero">
-    <h1 class="hero-title">AI-Powered Stock Intelligence</h1>
+    <h1 class="title">AI-Powered Stock Intelligence</h1>
     <p class="subtitle">Modern. Precise. Insight-driven stock research.</p>
 
-    <div class="input-row">
-        <input id="stockInput" placeholder="Enter a stock — e.g., TATAMOTORS">
-        <button onclick="goToAnalysis()">Analyze</button>
+    <div class="input-area">
+        <input id="stockInput" type="text" placeholder="Enter a stock — e.g., HDFC BANK">
+        <button onclick="startAnalysis()">Analyze</button>
     </div>
 
-    <p class="disclaimer">
-        ⚠ Finlytte provides AI-generated insights for educational use. Not financial advice.
-    </p>
+    <p class="disclaimer">⚠️ Finlytte provides AI-generated insights for educational use only. Not financial advice.</p>
 </section>
 
 <script>
-function goToAnalysis() {
-    const s = document.getElementById("stockInput").value.trim();
-    if (!s) return alert("Enter a stock first.");
-    window.location.href = `analysis.html?stock=${encodeURIComponent(s)}`;
+function startAnalysis() {
+    const stock = document.getElementById("stockInput").value.trim();
+    if (!stock) {
+        alert("Enter a valid stock name");
+        return;
+    }
+    window.location.href = `analysis.html?stock=${encodeURIComponent(stock)}`;
 }
 </script>
 
