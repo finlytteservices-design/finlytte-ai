@@ -1,28 +1,41 @@
- <!DOCTYPE html>
+ <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Finlytte — Stock Analyzer</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Finlytte — Stock AI</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <main class="center-card">
+    <h1 class="brand">Finlytte Stock Analyzer</h1>
 
-<header>
-    <h1>Finlytte Stock Analyzer</h1>
-</header>
+    <div class="form-row">
+      <input id="symbol" placeholder="Enter stock symbol (e.g. HDFCBANK, RELIANCE)" />
+      <select id="exchange">
+        <option>NSE</option>
+        <option>BSE</option>
+      </select>
+      <button id="go">Analyze</button>
+    </div>
 
-<div class="container">
-    <input id="stockInput" placeholder="Enter Stock Name (e.g., TATA STEEL)">
-    
-    <select id="exchange">
-        <option value="NSE">NSE</option>
-        <option value="BSE">BSE</option>
-    </select>
+    <p class="hint">Results open on a dedicated report page for best mobile experience.</p>
+    <footer class="tiny">© 2025 Finlytte — Not investment advice.</footer>
+  </main>
 
-    <button onclick="analyzeStock()">Analyze</button>
-</div>
-
-<script src="script.js"></script>
+<script>
+  document.getElementById('go').addEventListener('click', () => {
+    const s = document.getElementById('symbol').value.trim();
+    if(!s) return alert('Enter a symbol');
+    const ex = document.getElementById('exchange').value;
+    const url = `analysis.html?symbol=${encodeURIComponent(s)}&exchange=${encodeURIComponent(ex)}`;
+    window.location.href = url;
+  });
+  // allow Enter
+  document.getElementById('symbol').addEventListener('keydown', (e)=> {
+    if(e.key === 'Enter') document.getElementById('go').click();
+  });
+</script>
 </body>
 </html>
 
