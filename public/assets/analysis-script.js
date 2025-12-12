@@ -1,12 +1,13 @@
  document.getElementById('yearA').textContent = new Date().getFullYear();
 
 function getQueryParam(name){
-  const s = new URLSearchParams(window.location.search);
-  return s.get(name);
+  const p = new URLSearchParams(window.location.search);
+  return p.get(name);
 }
 
-const ticker = (getQueryParam('symbol') || '').toUpperCase(); // URL uses ?symbol=...
-if(!ticker){
+const ticker = (getQueryParam('symbol') || '').toUpperCase();
+
+if (!ticker) {
   document.getElementById('loading').textContent = 'No stock symbol provided.';
 } else {
   document.getElementById('title').textContent = 'Analysis: ' + ticker;
@@ -20,19 +21,16 @@ async function fetchAnalysis(ticker){
   loading.textContent = 'Fetching data…';
 
   try {
-    // Correct function endpoint
-     const res = await fetch(`/functions/analyze?symbol=${encodeURIComponent(ticker)}`);
-
+    const res = await fetch(`/api/analyze?symbol=${encodeURIComponent(ticker)}`);
 
     if (!res.ok) {
       const txt = await res.text();
-      loading.textContent = 'Error: ' + res.status + ' ' + txt;
+      loading.textContent = 'Error: ' + txt;
       return;
     }
 
     const data = await res.json();
 
-    // Expected data: { ticker, quote, analysis }
     renderFull({
       summary: data.analysis
     });
@@ -53,19 +51,14 @@ function renderFull(obj){
     c.className = 'card';
     c.style.marginBottom = '12px';
     c.innerHTML =
-      '<h3>' + escapeHtml(title) + '</h3>' +
-      '<div class="muted">' + escapeHtml(content) + '</div>';
+      `<h3>${escapeHtml(title)}</h3>
+       <div class="muted">${escapeHtml(content)}</div>`;
     full.appendChild(c);
   };
 
-  if (obj.summary)
-    addCard('Summary', obj.summary);
+  if (obj.summary) addCard('Summary', obj.summary);
 }
 
 function escapeHtml(s){
-  return String(s).replace(/[&<>"]/g, c => (
-    { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]
-  ));
+  return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 }
-
- 
