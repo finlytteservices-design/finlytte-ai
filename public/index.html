@@ -2,34 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Finlytte — AI Stock Research</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="homepage">
+<body>
 
-    <div class="nav">
-        <div class="brand">Finlytte</div>
+<header class="nav">
+    <div class="logo">Finlytte</div>
+</header>
+
+<section class="hero">
+    <h1 class="hero-title">AI-Powered Stock Intelligence</h1>
+    <p class="subtitle">Modern. Precise. Insight-driven stock research.</p>
+
+    <div class="input-row">
+        <input id="stockInput" placeholder="Enter a stock — e.g., TATAMOTORS">
+        <button onclick="goToAnalysis()">Analyze</button>
     </div>
 
-    <section class="hero">
-        <h1>Smart AI Stock Analysis</h1>
-        <p class="tagline">
-            Get structured, in-depth stock research powered by AI — clean, fast, and reliable.
-        </p>
+    <p class="disclaimer">
+        ⚠ Finlytte provides AI-generated insights for educational use. Not financial advice.
+    </p>
+</section>
 
-        <div class="search">
-            <input id="stockInput" placeholder="Enter a stock — e.g., HDFC BANK" />
-            <button onclick="goToAnalysis()">Analyze Stock</button>
-        </div>
+<script>
+function goToAnalysis() {
+    const s = document.getElementById("stockInput").value.trim();
+    if (!s) return alert("Enter a stock first.");
+    window.location.href = `analysis.html?stock=${encodeURIComponent(s)}`;
+}
+</script>
 
-        <p class="disclaimer">
-            ⚠️ Disclaimer: Finlytte provides AI-generated insights only for educational use.  
-            Not financial advice.
-        </p>
-    </section>
-
-<script src="analysis-script.js"></script>
 </body>
 </html>
 
