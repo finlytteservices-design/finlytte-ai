@@ -21,7 +21,8 @@ async function fetchAnalysis(ticker){
 
   try {
     // Correct function endpoint
-    const res = await fetch(`/functions/analyze?ticker=${encodeURIComponent(ticker)}`);
+     const res = await fetch(`/functions/analyze?symbol=${encodeURIComponent(ticker)}`);
+
 
     if (!res.ok) {
       const txt = await res.text();
