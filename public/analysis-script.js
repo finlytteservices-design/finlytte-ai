@@ -1,21 +1,53 @@
- window.onload = async function () {
-    const url = new URL(window.location.href);
-    const stock = url.searchParams.get("stock");
+ const params = new URLSearchParams(window.location.search);
+const stock = params.get("stock");
 
-    document.getElementById("stockTitle").innerText = `Analysis for ${stock}`;
+document.getElementById("stockTitle").innerText = `Analysis for ${stock}`;
 
-    const res = await fetch(`/functions/analyze?stock=${encodeURIComponent(stock)}`);
-    const data = await res.json();
+async function loadAnalysis() {
+    try {
+        const res = await fetch(`/functions/analyze?stock=${encodeURIComponent(stock)}`);
+        const data = await res.json();
 
-    document.getElementById("overview").innerHTML = `<h2>Overview</h2>${data.overview}`;
-    document.getElementById("growth").innerHTML = `<h2>Growth & Profitability</h2>${data.growth}`;
-    document.getElementById("ratios").innerHTML = `<h2>Ratio Analysis</h2>${data.ratios}`;
-    document.getElementById("roi").innerHTML = `<h2>ROI Analysis</h2>${data.roi}`;
-    document.getElementById("industry").innerHTML = `<h2>Industry Comparison</h2>${data.industry}`;
+        document.getElementById("overview").innerHTML = `<h2>Overview</h2><p>${data.overview}</p>`;
+        document.getElementById("growth").innerHTML = `<h2>Growth & Profitability</h2><p>${data.growth}</p>`;
+        document.getElementById("ratios").innerHTML = `<h2>Ratio Analysis</h2><p>${data.ratios}</p>`;
+        document.getElementById("roi").innerHTML = `<h2>ROI Analysis</h2><p>${data.roi}</p>`;
+        document.getElementById("industry").innerHTML = `<h2>Industry Comparison</h2><p>${data.industry}</p>`;
 
-    // Animate risk needle (-90° low → 0° medium → +90° high)
-    const risk = Number(data.risk);
-    const degree = (risk - 50) * 1.8; 
-    document.getElementById("needle").style.transform = `rotate(${degree}deg)`;
-};
+        drawRiskGauge(data.risk);
+
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+loadAnalysis();
+
+/* RISK GAUGE */
+function drawRiskGauge(value) {
+    const canvas = document.getElementById("riskGauge");
+    const ctx = canvas.getContext("2d");
+
+    canvas.width = 400;
+    canvas.height = 200;
+
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height;
+    const radius = 160;
+
+    ctx.lineWidth = 16;
+
+    // grey background arc
+    ctx.strokeStyle = "#ddd";
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, radius, Math.PI, 0);
+    ctx.stroke();
+
+    // red indicator
+    ctx.strokeStyle = "#e63946";
+    ctx.beginPath();
+    const angle = Math.PI + (value / 100) * Math.PI;
+    ctx.arc(centerX, centerY, radius, Math.PI, angle);
+    ctx.stroke();
+}
 
