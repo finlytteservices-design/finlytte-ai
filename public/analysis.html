@@ -3,37 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Finlytte — Analysis</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Stock Analysis</title>
+    <link rel="stylesheet" href="public/style.css">
 </head>
-
 <body>
 
-<header class="nav">
+<nav class="nav">
     <div class="logo">Finlytte</div>
-</header>
+</nav>
 
 <section class="analysis-container">
+    <h1 id="stockTitle">Analysis</h1>
 
-    <h1 id="stockTitle" class="analysis-title"></h1>
+    <div class="card-grid">
+        <div class="card" id="overview"></div>
+        <div class="card" id="growth"></div>
+        <div class="card" id="ratios"></div>
+        <div class="card" id="roi"></div>
+        <div class="card" id="industry"></div>
 
-    <div class="card" id="overview"></div>
-    <div class="card" id="growth"></div>
-    <div class="card" id="ratios"></div>
-    <div class="card" id="roi"></div>
-    <div class="card" id="industry"></div>
-
-    <!-- RISK SPEEDOMETER -->
-    <div class="card">
-        <h2 class="card-title">Risk Meter</h2>
-        <div class="speedometer">
-            <div class="needle" id="needle"></div>
+        <div class="card risk-card">
+            <h2>Risk Meter</h2>
+            <canvas id="riskGauge"></canvas>
         </div>
     </div>
-
 </section>
 
-<script src="analysis-script.js"></script>
+<script src="public/analysis-script.js"></script>
 
 </body>
 </html>
